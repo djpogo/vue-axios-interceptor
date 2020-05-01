@@ -1,17 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    Three random dogs: <button @click="loadDogs">Load Dogs</button>
+    <ul style="list-style: none">
+      <li
+        :key="dog"
+        v-for="dog in dogs"
+      >
+        <img :src="dog" alt="Dog" style="max-width: 100%; height: auto" >
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-
 export default {
   name: 'App',
+  data() {
+    return {
+      dogs: null,
+    };
+  },
   components: {
-    HelloWorld,
+  },
+  mounted() {
+    this.loadDogs();
+  },
+  methods: {
+    loadDogs() {
+      this.axios.get(
+        'https://dog.ceo/api/breeds/image/random/3',
+        {
+          config: {
+            showToast: true,
+            requestToast: {
+              title: 'Loading Dogs 🐾',
+            },
+            responseToast: {
+              title: '🐾 Dogs loaded',
+            },
+          },
+        },
+      )
+        .then(({ data }) => {
+          this.dogs = data.message;
+        });
+    },
   },
 };
 </script>
