@@ -6,7 +6,7 @@ axios.interceptors.request.use(
     // eslint-disable-next-line no-param-reassign
     request.config = {
       showToast: false, // may be overwritten in next line
-      ...(request.config || {}),
+      ...(request.config ?? {}),
       start: Date.now(),
     };
 
