@@ -1,5 +1,7 @@
 # vue-axios-interceptor
 
+Demo Project for https://raoulkramer.de/vue-js-axios-interceptors-and-toast-notifications/
+
 ## Project setup
 ```
 npm install
